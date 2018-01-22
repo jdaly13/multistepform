@@ -31,29 +31,6 @@ export default class Wizard extends React.Component {
     }
   }
 
-  /*handleState(val) {
-    let key = Object.keys(val)[0];
-    this.setState({
-      wizardContext: { ...this.state.wizardContext, [key]: val[key] }
-    });
-  }
-
-    handleNested(val) {
-    let key = Object.keys(val)[0],
-      stage = val.stage;
-
-    this.setState(prevState => ({
-      ...prevState,
-      wizardContext: {
-        ...prevState.wizardContext,
-        [stage]: {
-          ...prevState.wizardContext[stage],
-          [key]: val[key]
-        }
-      }
-    }));
-  }
-  */
   handleState(event) {
     const key = event.target.getAttribute('data-id'),
       value = event.target.value;
@@ -72,24 +49,6 @@ export default class Wizard extends React.Component {
         [stage]: {
           ...prevState.wizardContext[stage],
           [key]: value
-        }
-      }
-    }));
-  }
-
-  handleFormChange(event) {
-    let id = event.target.getAttribute('data-id');
-    let value = event.target.value;
-    const stage = this[
-      this.props.steps[this.state.compState - 1].props.wizardContext
-    ];
-    this.setState(prevState => ({
-      ...prevState,
-      wizardContext: {
-        ...prevState.wizardContext,
-        [stage]: {
-          ...prevState.wizardContext[stage],
-          [id]: value
         }
       }
     }));
@@ -122,7 +81,6 @@ export default class Wizard extends React.Component {
 
   render() {
     const Header = this.props.header;
-    //const Step = this.props.steps[this.state.compState - 1];
     return (
       <div className="container">
         <Header />
