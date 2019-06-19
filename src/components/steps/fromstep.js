@@ -1,5 +1,5 @@
 import React from 'react';
-import {stepMapping} from '../partials/constants';
+import {stepMapping} from '../../partials/constants';
 
 export default class StepOne extends React.Component {
   render() {

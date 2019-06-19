@@ -4,6 +4,7 @@ import Navigation from '../partials/navigation';
 import ProgressBar from '../partials/progressbar';
 import PropTypes from 'prop-types';
 import {stepMapping} from '../partials/constants';
+import {validatorObj} from '../partials/utils';
 
 export default class Wizard extends React.Component {
   constructor(props) {
@@ -14,7 +15,8 @@ export default class Wizard extends React.Component {
       showConfirm: false,
       compState: 1, //our starting step
       showNavigation: true,
-      wizardContext: this.props.wizardContext
+      wizardContext: this.props.wizardContext,
+      errorObj: {}
     };
     this.next = this.next.bind(this);
     this.previous = this.previous.bind(this);
@@ -72,6 +74,20 @@ export default class Wizard extends React.Component {
   }
 
   next() {
+    const {wizardContext} = this.state;
+    this.setState({
+      errorObj: {}
+    });
+    const currentComponent = Object.keys(validatorObj)[this.state.compState -1];
+    if (validatorObj[currentComponent]) {
+      const errors = validatorObj[currentComponent](wizardContext[currentComponent]);
+      if (Object.keys(errors).length) {
+        this.setState({
+          errorObj: errors
+        })
+        return false;
+      }
+    }
     this.setState((prevState, props) => {
       return {
         compState: prevState.compState + 1,
@@ -83,6 +99,9 @@ export default class Wizard extends React.Component {
   }
 
   previous() {
+    this.setState({
+      errorObj: {}
+    });
     if (this.state.compState > 1) {
       this.setState({
         compState: this.state.compState - 1,
@@ -110,6 +129,11 @@ export default class Wizard extends React.Component {
           prev={this.previous}
           show={this.state.showNavigation}
         />
+        {Object.keys(this.state.errorObj).map((key) => {
+          return (
+            <p> You have {key} error </p>
+          )
+        })}
       </div>
     );
   }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { getshippingOption, getShippingRate } from '../../partials/utils';
-import {stepMapping} from '../partials/constants';
+import {stepMapping} from '../../partials/constants';
 
 export default class Confirm extends React.Component {
   constructor(props) {
