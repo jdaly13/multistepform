@@ -3,6 +3,7 @@ import React from 'react';
 import Navigation from '../partials/navigation';
 import ProgressBar from '../partials/progressbar';
 import PropTypes from 'prop-types';
+import {stepMapping} from '../partials/constants';
 
 export default class Wizard extends React.Component {
   constructor(props) {
@@ -11,16 +12,16 @@ export default class Wizard extends React.Component {
       showPreviousBtn: false,
       showNextBtn: true,
       showConfirm: false,
-      compState: 1,
+      compState: 1, //our starting step
       showNavigation: true,
       wizardContext: this.props.wizardContext
     };
-
     this.next = this.next.bind(this);
     this.previous = this.previous.bind(this);
     this.handleState = this.handleState.bind(this);
     this.handleNested = this.handleNested.bind(this);
     this.confirm = this.confirm.bind(this);
+    this.handleFilter = this.handleFilter.bind(this);
   }
 
   checkNavState(next) {
@@ -31,6 +32,17 @@ export default class Wizard extends React.Component {
     }
   }
 
+  handleFilter(event) {
+    const typeOfComponenent = event.target.getAttribute('data-step');
+    if (typeOfComponenent === stepMapping.from || typeOfComponenent === stepMapping.to) {
+      this.handleNested(event);
+    } else if (typeOfComponenent === stepMapping.confirm) {
+      this.props.onComplete(this.state.wizardContext)
+    } else if(typeOfComponenent === stepMapping.weight || typeOfComponenent === stepMapping.shipping ) { //weight and shipping steps
+      this.handleState(event);
+    }
+  }
+
   handleState(event) {
     const key = event.target.getAttribute('data-id'),
       value = event.target.value;
@@ -38,6 +50,7 @@ export default class Wizard extends React.Component {
       wizardContext: { ...this.state.wizardContext, [key]: value }
     });
   }
+
   handleNested(event) {
     const key = event.target.getAttribute('data-id'),
       stage = event.target.getAttribute('data-step'),
@@ -54,8 +67,8 @@ export default class Wizard extends React.Component {
     }));
   }
 
-  confirm(val) {
-    this.props.onComplete(val);
+  confirm(state) {
+    this.props.onComplete(state);
   }
 
   next() {
@@ -81,6 +94,7 @@ export default class Wizard extends React.Component {
 
   render() {
     const Header = this.props.header;
+    const ActiveComponent = this.props.steps[this.state.compState - 1];
     return (
       <div className="container">
         <Header />
@@ -88,12 +102,7 @@ export default class Wizard extends React.Component {
           step={this.state.compState}
           length={this.props.steps.length}
         />
-        {React.cloneElement(this.props.steps[this.state.compState - 1], {
-          onAction: this[
-            this.props.steps[this.state.compState - 1].props.onAction
-          ],
-          wizardContext: this.state.wizardContext
-        })}
+        <ActiveComponent onAction={this.handleFilter} wizardContext={this.state.wizardContext} />
         <Navigation
           showPrev={this.state.showPreviousBtn}
           showNext={this.state.showNextBtn}

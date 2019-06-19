@@ -1,9 +1,9 @@
 import React from 'react';
+import {stepMapping} from '../partials/constants';
 
 export default class StepThree extends React.Component {
   render() {
-    const { onAction } = this.props;
-    const { weight } = this.props.wizardContext;
+    const { onAction, wizardContext: {weight} } = this.props;
     return (
       <div>
         <h6>Enter Weight</h6>
@@ -14,6 +14,7 @@ export default class StepThree extends React.Component {
               className="u-full-width"
               placeholder="Weight"
               data-id="weight"
+              data-step={stepMapping.weight}
               type="text"
               onChange={onAction}
               value={weight}

@@ -9,7 +9,8 @@ export default class ShippingLabelMaker extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      labelReady: false
+      labelReady: false,
+      wizardContext: shippingObj
     };
     this.createLabel = this.createLabel.bind(this);
   }
@@ -17,19 +18,19 @@ export default class ShippingLabelMaker extends React.Component {
   createLabel(val) {
     this.setState({
       labelReady: true,
-      info: val
+      wizardContext: val
     });
   }
   render() {
     return (
       <div>
         {this.state.labelReady ? (
-          <ShippingLabel info={this.state.info} />
+          <ShippingLabel info={this.state.wizardContext} />
         ) : (
           <Wizard
             header={Header}
             steps={steps}
-            wizardContext={shippingObj}
+            wizardContext={this.state.wizardContext}
             onComplete={this.createLabel}
           />
         )}

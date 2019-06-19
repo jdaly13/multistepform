@@ -1,9 +1,9 @@
 import React from 'react';
+import {stepMapping} from '../partials/constants';
 
 export default class StepTwo extends React.Component {
   render() {
-    const { onAction } = this.props;
-    const to = this.props.wizardContext.to;
+    const { onAction, wizardContext: {to} } = this.props;
     return (
       <div>
         <h6>Enter to Address</h6>
@@ -15,7 +15,7 @@ export default class StepTwo extends React.Component {
               placeholder="First Name"
               data-id="name"
               type="text"
-              data-step="to"
+              data-step={stepMapping.to}
               onChange={onAction}
               value={to.name}
               autoFocus
@@ -30,7 +30,7 @@ export default class StepTwo extends React.Component {
               placeholder="Street"
               data-id="street"
               type="text"
-              data-step="to"
+              data-step={stepMapping.to}
               onChange={onAction}
               value={to.street}
             />
@@ -43,7 +43,7 @@ export default class StepTwo extends React.Component {
             placeholder="City"
             data-id="city"
             type="text"
-            data-step="to"
+            data-step={stepMapping.to}
             onChange={onAction}
             value={to.city}
           />
@@ -53,7 +53,7 @@ export default class StepTwo extends React.Component {
             placeholder="state"
             data-id="state"
             type="text"
-            data-step="to"
+            data-step={stepMapping.to}
             onChange={onAction}
             value={to.state}
           />
@@ -63,7 +63,7 @@ export default class StepTwo extends React.Component {
             placeholder="zip"
             data-id="zip"
             type="text"
-            data-step="to"
+            data-step={stepMapping.to}
             onChange={onAction}
             value={to.zip}
           />

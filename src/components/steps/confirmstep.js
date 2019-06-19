@@ -1,11 +1,11 @@
 import React from 'react';
 import { getshippingOption, getShippingRate } from '../../partials/utils';
+import {stepMapping} from '../partials/constants';
 
 export default class Confirm extends React.Component {
   constructor(props) {
     super(props);
     this.state = this.props.wizardContext;
-    this.confirmInfo = this.confirmInfo.bind(this);
   }
 
   gettoFrom(keye) {
@@ -35,10 +35,6 @@ export default class Confirm extends React.Component {
     return getshippingOption(this.state.shippingOption);
   }
 
-  confirmInfo() {
-    this.props.onAction(this.state);
-  }
-
   render() {
     return (
       <div>
@@ -50,9 +46,9 @@ export default class Confirm extends React.Component {
         <p> Shipping Weight: {this.state.weight} </p>
         <p> Shipping Method: {this.getshippingOption()} </p>
         <p> Shipping Cost: {this.getShippingCost()} </p>
-        <p>
+        <p data-id="confirm">
           {' '}
-          To confirm <button onClick={this.confirmInfo}>Confirm</button>{' '}
+          To confirm <button data-step={stepMapping.confirm} onClick={this.props.onAction}>Confirm</button>{' '}
         </p>
         <p> To update information click previous below </p>
       </div>

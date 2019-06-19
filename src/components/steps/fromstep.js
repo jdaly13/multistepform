@@ -1,8 +1,9 @@
 import React from 'react';
+import {stepMapping} from '../partials/constants';
 
 export default class StepOne extends React.Component {
   render() {
-    const { onAction } = this.props;
+    const { onAction, wizardContext: {from} } = this.props;
     return (
       <div>
         <h6>Enter From Address</h6>
@@ -13,10 +14,10 @@ export default class StepOne extends React.Component {
               className="u-full-width"
               placeholder="Name"
               data-id="name"
-              data-step="from"
+              data-step={stepMapping.from}
               type="text"
               onChange={onAction}
-              value={this.props.wizardContext.from.name}
+              value={from.name}
               autoFocus
             />
           </div>
@@ -28,10 +29,10 @@ export default class StepOne extends React.Component {
               className="u-full-width"
               placeholder="Street"
               data-id="street"
-              data-step="from"
+              data-step={stepMapping.from}
               type="text"
               onChange={onAction}
-              value={this.props.wizardContext.from.street}
+              value={from.street}
             />
           </div>
         </div>
@@ -41,30 +42,30 @@ export default class StepOne extends React.Component {
             className="small"
             placeholder="City"
             data-id="city"
-            data-step="from"
+            data-step={stepMapping.from}
             type="text"
             onChange={onAction}
-            value={this.props.wizardContext.from.city}
+            value={from.city}
           />
           <label>State</label>
           <input
             className="small"
             placeholder="state"
             data-id="state"
-            data-step="from"
+            data-step={stepMapping.from}
             type="text"
             onChange={onAction}
-            value={this.props.wizardContext.from.state}
+            value={from.state}
           />
           <label>Zip</label>
           <input
             className="small"
             placeholder="zip"
             data-id="zip"
-            data-step="from"
+            data-step={stepMapping.from}
             type="text"
             onChange={onAction}
-            value={this.props.wizardContext.from.zip}
+            value={from.zip}
           />
         </div>
       </div>
