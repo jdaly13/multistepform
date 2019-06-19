@@ -15,7 +15,6 @@ export function getShippingRate(weight, shippingOption) {
 }
 
 function checkFromTo(obj) {
-    console.log(obj);
     const errorObj = {};
     if (!obj.name) {
       errorObj.firstName = true;
