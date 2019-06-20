@@ -21,7 +21,6 @@ export default class Wizard extends React.Component {
     this.previous = this.previous.bind(this);
     this.handleState = this.handleState.bind(this);
     this.handleNested = this.handleNested.bind(this);
-    this.confirm = this.confirm.bind(this);
     this.handleFilter = this.handleFilter.bind(this);
   }
 
@@ -32,7 +31,7 @@ export default class Wizard extends React.Component {
       });
     }
   }
-
+  /* We call this function as a middleware to see what appropriate function to invoke */
   handleFilter(event) {
     const typeOfComponenent = event.target.getAttribute('data-step');
     if (typeOfComponenent === stepMapping.from || typeOfComponenent === stepMapping.to) {
@@ -68,18 +67,15 @@ export default class Wizard extends React.Component {
     }));
   }
 
-  confirm(state) {
-    this.props.onComplete(state);
-  }
-
   next() {
     const {wizardContext} = this.state;
     this.setState({
       errorObj: {}
     });
-    const currentComponent = Object.keys(validatorObj)[this.state.compState -1];
-    if (validatorObj[currentComponent]) {
-      const errors = validatorObj[currentComponent](wizardContext[currentComponent]);
+    /* validation of form for each step */
+    const currentComponentStep = Object.keys(validatorObj)[this.state.compState -1];
+    if (validatorObj[currentComponentStep]) {
+      const errors = validatorObj[currentComponentStep](wizardContext[currentComponentStep]);
       if (Object.keys(errors).length) {
         this.setState({
           errorObj: errors
