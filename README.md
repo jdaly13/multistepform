@@ -13,10 +13,10 @@ James Daly
 
 ### Structure/Explanation
 
-Conditional Rendering in shipping-label-maker/index.js
-If Label is ready we render label if not we render a wizard
-the Wizard requires a certain number of properties
-Including
+Conditional Rendering 
+If Label is ready we render label if not we render a form wizard  
+the Wizard requires a certain number of properties  
+Including  
 1.takes in a certrain number of steps stored in an array  
 2.Wizard also takes in a dummy object which is essentially the template which the user will fill in  
 3.Header A component to be rendered inside the Wizard  
@@ -31,7 +31,7 @@ Index files creates an array of all the steps
 Added basic validation for form as well
 
 ```
-reusable partials are stored in partials
+reusable partials are stored in core components
 component state is stored in wizard container
-children presentational components/steps are stored in components
+children presentational features/steps are stored in components
 ```
