@@ -1,11 +1,10 @@
 import React from 'react';
-import { getshippingOption, getShippingRate } from '../partials/utils';
+import { getshippingOption, getShippingRate } from '../core/components/utils';
 
 export default class ShippingLabel extends React.Component {
   constructor(props) {
     super(props);
     this.state = props.info;
-    console.log(props.info);
   }
 
   render() {

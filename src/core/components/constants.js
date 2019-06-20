@@ -5,3 +5,8 @@ export const stepMapping = Object.freeze({
   weight: "weight",
   shipping: "shipping"
 });
+
+export const shippingOptionObj = Object.freeze({
+  ground: 1,
+  priority: 2
+})

@@ -1,5 +1,6 @@
 import React from 'react';
-import {stepMapping} from '../../partials/constants';
+import {stepMapping, shippingOptionObj} from '../../core/components/constants';
+
 
 export default class StepFour extends React.Component {
   render() {
@@ -16,10 +17,10 @@ export default class StepFour extends React.Component {
               data-id="shippingOption"
               data-step={stepMapping.shipping}
             >
-              <option value="1">
+              <option value={shippingOptionObj.ground}>
                 Ground
               </option>
-              <option value="2">Express</option>
+              <option value={shippingOptionObj.priority}>Express</option>
             </select>
           </div>
         </div>

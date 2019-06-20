@@ -1,8 +1,9 @@
-import {stepMapping} from './constants';
 import isPostalCode from 'validator/lib/isPostalCode';
-const {from, to, weight, shipping} = stepMapping;
+import {stepMapping} from './constants';
+const {from, to, weight} = stepMapping;
+
 export function getshippingOption(option) {
-    return (parseInt(option) === 1) ? "Ground" : "Express"
+    return (parseInt(option,10) === 1) ? "Ground" : "Express"
 }
 
 export function getShippingRate(weight, shippingOption) {

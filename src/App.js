@@ -1,9 +1,9 @@
 import React from 'react';
-import Wizard from './containers/wizard';
-import steps from './components/steps/index';
-import shippingObj from './partials/shippingObj';
-import Header from './partials/header';
-import ShippingLabel from './components/shpping-label';
+import Wizard from './core/components/wizard/wizard';
+import shippingObj from './core/components/shippingObj';
+import Header from './core/components/header';
+import steps from './features/steps/index';
+import ShippingLabel from './features/shpping-label';
 
 export default class ShippingLabelMaker extends React.Component {
   constructor(props) {

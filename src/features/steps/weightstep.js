@@ -1,5 +1,5 @@
 import React from 'react';
-import {stepMapping} from '../../partials/constants';
+import {stepMapping} from '../../core/components/constants';
 
 export default class StepThree extends React.Component {
   render() {

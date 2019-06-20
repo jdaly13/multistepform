@@ -1,10 +1,9 @@
 import React from 'react';
-
-import Navigation from '../partials/navigation';
-import ProgressBar from '../partials/progressbar';
 import PropTypes from 'prop-types';
-import {stepMapping} from '../partials/constants';
-import {validatorObj} from '../partials/utils';
+import Navigation from '../navigation';
+import ProgressBar from '../progressbar';
+import {stepMapping} from '../constants';
+import {validatorObj} from '../utils';
 
 export default class Wizard extends React.Component {
   constructor(props) {
