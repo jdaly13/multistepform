@@ -1,9 +1,10 @@
 import React from 'react';
+import {stepMapping, shippingOptionObj} from '../../core/components/constants';
+
 
 export default class StepFour extends React.Component {
   render() {
-    const { onAction } = this.props;
-    const { shippingOption } = this.props;
+    const { onAction, wizardContext: {shippingOption} } = this.props;
     return (
       <div>
         <h6>Enter shipping option</h6>
@@ -14,11 +15,12 @@ export default class StepFour extends React.Component {
               onChange={onAction}
               value={shippingOption}
               data-id="shippingOption"
+              data-step={stepMapping.shipping}
             >
-              <option defaultValue="1" value="1">
+              <option value={shippingOptionObj.ground}>
                 Ground
               </option>
-              <option value="2">Express</option>
+              <option value={shippingOptionObj.priority}>Express</option>
             </select>
           </div>
         </div>

@@ -1,15 +1,16 @@
 import React from 'react';
-import Wizard from './containers/wizard';
-import steps from './components/steps/index';
-import shippingObj from './partials/shippingObj';
-import Header from './partials/header';
-import ShippingLabel from './components/shpping-label';
+import Wizard from './core/components/wizard/wizard';
+import shippingObj from './core/components/shippingObj';
+import Header from './core/components/header';
+import steps from './features/steps/index';
+import ShippingLabel from './features/shpping-label';
 
 export default class ShippingLabelMaker extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      labelReady: false
+      labelReady: false,
+      wizardContext: shippingObj
     };
     this.createLabel = this.createLabel.bind(this);
   }
@@ -17,19 +18,19 @@ export default class ShippingLabelMaker extends React.Component {
   createLabel(val) {
     this.setState({
       labelReady: true,
-      info: val
+      wizardContext: val
     });
   }
   render() {
     return (
       <div>
         {this.state.labelReady ? (
-          <ShippingLabel info={this.state.info} />
+          <ShippingLabel info={this.state.wizardContext} />
         ) : (
           <Wizard
             header={Header}
             steps={steps}
-            wizardContext={shippingObj}
+            wizardContext={this.state.wizardContext}
             onComplete={this.createLabel}
           />
         )}
