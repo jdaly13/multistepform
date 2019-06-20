@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {stepMapping} from '../../core/components/constants';
 
 export default class StepTwo extends React.Component {
@@ -73,7 +74,7 @@ export default class StepTwo extends React.Component {
   }
 }
 
-StepTwo.defaultProps = {
-  wizardContext: {},
-  onAction: () => {}
+StepTwo.propTypes = {
+  wizardContext: PropTypes.object.isRequired,
+  onAction: PropTypes.func.isRequired
 };

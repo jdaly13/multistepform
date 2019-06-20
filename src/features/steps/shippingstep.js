@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {stepMapping, shippingOptionObj} from '../../core/components/constants';
 
 
@@ -28,3 +29,8 @@ export default class StepFour extends React.Component {
     );
   }
 }
+
+StepFour.propTypes = {
+  wizardContext: PropTypes.object.isRequired,
+  onAction: PropTypes.func.isRequired
+};

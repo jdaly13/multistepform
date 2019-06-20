@@ -3,7 +3,7 @@ import {stepMapping} from './constants';
 const {from, to, weight} = stepMapping;
 
 export function getshippingOption(option) {
-    return (parseInt(option,10) === 1) ? "Ground" : "Express"
+    return (option === 1) ? "Ground" : "Express"
 }
 
 export function getShippingRate(weight, shippingOption) {
@@ -38,7 +38,7 @@ function checkFromTo(obj) {
 
 function checkWeight(val) {
   const errorObj = {};
-  if (!val) {
+  if (!parseInt(val, 10)) {
     errorObj.weight = true;
   }
   return errorObj;

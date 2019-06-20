@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {stepMapping} from '../../core/components/constants';
 
 export default class StepOne extends React.Component {
@@ -47,7 +48,7 @@ export default class StepOne extends React.Component {
             onChange={onAction}
             value={from.city}
           />
-          <label>State</label>
+          <label>State </label>
           <input
             className="small"
             placeholder="state"
@@ -73,7 +74,7 @@ export default class StepOne extends React.Component {
   }
 }
 
-StepOne.defaultProps = {
-  wizardContext: {},
-  onAction: () => {}
+StepOne.propTypes = {
+  wizardContext: PropTypes.object.isRequired,
+  onAction: PropTypes.func.isRequired
 };

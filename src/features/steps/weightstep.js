@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {stepMapping} from '../../core/components/constants';
 
 export default class StepThree extends React.Component {
@@ -15,7 +16,7 @@ export default class StepThree extends React.Component {
               placeholder="Weight"
               data-id="weight"
               data-step={stepMapping.weight}
-              type="text"
+              type="number"
               onChange={onAction}
               value={weight}
               autoFocus
@@ -26,3 +27,8 @@ export default class StepThree extends React.Component {
     );
   }
 }
+
+StepThree.propTypes = {
+  wizardContext: PropTypes.object.isRequired,
+  onAction: PropTypes.func.isRequired
+};

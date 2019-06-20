@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { getshippingOption, getShippingRate } from '../../core/components/utils';
 import {stepMapping} from '../../core/components/constants';
 
@@ -20,9 +21,6 @@ export default class Confirm extends React.Component {
   }
 
   getShippingCost() {
-    if (typeof parseFloat(this.state.weight) !== 'number') {
-      return <span> Not a number </span>;
-    }
     return (
       <span>
         {' '}
@@ -40,9 +38,9 @@ export default class Confirm extends React.Component {
       <div>
         <h6> Confirm your information </h6>
         <p> From Information </p>
-        <ul>{this.gettoFrom('from')}</ul>
+        <ul>{this.gettoFrom(stepMapping.from)}</ul>
         <p> To Information </p>
-        <ul>{this.gettoFrom('to')}</ul>
+        <ul>{this.gettoFrom(stepMapping.to)}</ul>
         <p> Shipping Weight: {this.state.weight} </p>
         <p> Shipping Method: {this.getshippingOption()} </p>
         <p> Shipping Cost: {this.getShippingCost()} </p>
@@ -55,3 +53,8 @@ export default class Confirm extends React.Component {
     );
   }
 }
+
+Confirm.propTypes = {
+    wizardContext: PropTypes.object.isRequired,
+    onAction: PropTypes.func.isRequired
+};

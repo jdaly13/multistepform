@@ -124,9 +124,10 @@ export default class Wizard extends React.Component {
           prev={this.previous}
           show={this.state.showNavigation}
         />
-        {Object.keys(this.state.errorObj).map((key) => {
+        {Object.keys(this.state.errorObj).map((key, index) => {
+          const error = (key === "state") ? "You need two letters for state" : "You have " + key + " error";
           return (
-            <p> You have {key} error </p>
+            <p key={index}> {error} </p>
           )
         })}
       </div>
