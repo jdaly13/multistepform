@@ -114,29 +114,32 @@ label {
 
 .shippinglabel {
   display: block;
-  height: 500px;
+  min-height: 400px;
   width: 320px;
   transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
   position: absolute;
+  border-radius:12%;
+  border:1px solid black;
+  padding:1rem;
 }
 
-.shippinglabel .info {
+.shippinglabel > div {
+  padding-bottom:1rem;
   margin-bottom: 1rem;
 }
 
-.shippinglabel .info span {
+
+.shippinglabel .from span {
+  text-align: left;
+}
+
+.shippinglabel  span {
   text-align: center;
 }
 
-.shippinglabel .to {
-  display: block;
-  transform: translate(-50%, -50%);
-  top: 50%;
-  left: 50%;
-  position: absolute;
-}
+
 
 .shippinglabel h6 {
   text-align: center;
