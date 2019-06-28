@@ -4,8 +4,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Entry point index.js in src directory
 
-npm install
-npm start
+`npm install`  
+`npm start`
 
 ## Authors
 
